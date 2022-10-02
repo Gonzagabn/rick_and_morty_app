@@ -31,7 +31,13 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_localizations:
+    sdk: flutter
 
+  get:
+  get_storage:
+  intl:
+  mask_text_input_formatter: ^2.0.0
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -60,8 +66,14 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
-  # assets:
-  #   - images/a_dot_burr.jpeg
+  assets:
+    - assets/images/rick_and_morty_1.png
+    - assets/images/rick_and_morty_2.png
+    - assets/images/rick_and_morty_3.png
+    - assets/images/rick_and_morty_characters.png
+    - assets/images/rick_and_morty_favorites.png
+    - assets/images/rick_and_morty_logo.png
+    - assets/images/rick_and_morty_search.png
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
