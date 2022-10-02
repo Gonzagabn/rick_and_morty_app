@@ -8,34 +8,35 @@ class CharactersController extends GetxController {
   CharactersController(this.repository);
   final isReady = false.obs;
   final isLoadingMore = false.obs;
-  final characters = Characters().obs;
+  final characters = CharactersModel().obs;
   final resultsPageIndex = 1.obs;
 
   @override
-  void onInit() {
-    getCharacter();
+  void onInit() async {
+    await getCharacter();
+    isReady.value = true;
     super.onInit();
   }
 
   getCharacter() async {
-    isReady.value = false;
-    await repository.getCharacter().then((data) {
+    await repository.getAllCharacters().then((data) {
       if (VerifyError.verify(data)) {
         isReady.value = true;
       } else {
+        resultsPageIndex.value++;
         characters.value = data;
       }
     });
-    isReady.value = true;
   }
 
-  getMoreCharacters(index) async {
+  getMoreCharacters() async {
     isLoadingMore.value = true;
-    await repository.getCharacter().then((data) {
+    await repository
+        .getAllCharacters(page: resultsPageIndex.value)
+        .then((data) {
       if (VerifyError.verify(data)) {
         isLoadingMore.value = false;
       } else {
-        data as Characters;
         resultsPageIndex.value++;
         characters.value.results!.addAll(data.results!);
       }
