@@ -1,13 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_switch/flutter_switch.dart';
 import 'package:get/get.dart';
 import 'package:rick_and_morty_app/app/modules/search/controller.dart';
+import 'package:rick_and_morty_app/app/widgets/custom_btn.dart';
+import 'package:rick_and_morty_app/app/widgets/custom_tff.dart';
 import 'package:rick_and_morty_app/app/widgets/top_section.dart';
+import 'package:rick_and_morty_app/core/theme/box_decorations.dart';
+import 'package:rick_and_morty_app/core/theme/text_theme.dart';
 import 'package:rick_and_morty_app/core/utils/images.dart';
 import 'package:rick_and_morty_app/core/utils/size.dart';
 import 'package:rick_and_morty_app/core/values/colors.dart';
 
 class SearchPage extends GetView<SearchController> {
-  const SearchPage({Key? key}) : super(key: key);
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  SearchPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -28,32 +35,231 @@ class SearchPage extends GetView<SearchController> {
                 right: 0.0,
                 top: 48.0,
                 bottom: 0.0,
-                child: Container(
-                  color: white_color,
-                  child: Stack(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Center(child: Image.asset(logo)),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(right: 2.0),
-                        child: RawScrollbar(
-                          thickness: 2.0,
-                          thumbVisibility: true,
-                          thumbColor: brown_color,
-                          child: SingleChildScrollView(
-                            child: Padding(
-                              padding:
-                                  const EdgeInsets.only(left: 8.0, right: 8.0),
-                              child: Column(
-                                children: [],
-                              ),
+                child: Obx(
+                  () => Form(
+                    key: _formKey,
+                    child: Container(
+                      color: white_color,
+                      child: Stack(
+                        children: [
+                          controller.characters.value.results == null
+                              ? Center(
+                                  child: Image.asset(
+                                  image3,
+                                  color: white_color.withOpacity(0.08),
+                                  colorBlendMode: BlendMode.modulate,
+                                ))
+                              : Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Center(child: Image.asset(logo)),
+                                ),
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Column(
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.only(top: 8.0),
+                                  child: CustomTffWidget(
+                                    text: 'Nome',
+                                    icon: const Icon(Icons.search,
+                                        color: bg_dark_blue_color),
+                                    type: TextInputType.name,
+                                    onChanged: (s) =>
+                                        controller.onChangedName(s),
+                                    onSaved: (s) => controller.onSavedName(s),
+                                    onValidate: (s) =>
+                                        controller.onValidateName(s),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(top: 16.0),
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceAround,
+                                    children: [
+                                      Row(
+                                        children: [
+                                          const Padding(
+                                            padding:
+                                                EdgeInsets.only(right: 8.0),
+                                            child: Text(
+                                              'Humano',
+                                              style: body_black_16_700,
+                                            ),
+                                          ),
+                                          Obx(
+                                            () => FlutterSwitch(
+                                              width: 40.0,
+                                              height: 20.0,
+                                              valueFontSize: 14.0,
+                                              toggleSize: 15.0,
+                                              activeToggleColor:
+                                                  bg_medium_blue_color,
+                                              activeText: '',
+                                              inactiveText: '',
+                                              activeColor: green_logo_color,
+                                              inactiveColor: black_color,
+                                              value: controller
+                                                  .humanFilterSelected.value,
+                                              borderRadius: 105.0,
+                                              padding: 2.5,
+                                              showOnOff: true,
+                                              onToggle: (val) => controller
+                                                  .switchHumanFilter(),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                      Row(
+                                        children: [
+                                          const Padding(
+                                            padding:
+                                                EdgeInsets.only(right: 8.0),
+                                            child: Text(
+                                              'Alien',
+                                              style: body_black_16_700,
+                                            ),
+                                          ),
+                                          Obx(
+                                            () => FlutterSwitch(
+                                              width: 40.0,
+                                              height: 20.0,
+                                              valueFontSize: 14.0,
+                                              toggleSize: 15.0,
+                                              activeToggleColor:
+                                                  bg_medium_blue_color,
+                                              activeText: '',
+                                              inactiveText: '',
+                                              activeColor: green_logo_color,
+                                              inactiveColor: black_color,
+                                              value: controller
+                                                  .alienFilterSelected.value,
+                                              borderRadius: 105.0,
+                                              padding: 2.5,
+                                              showOnOff: true,
+                                              onToggle: (val) => controller
+                                                  .switchAlienFilter(),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                                )
+                              ],
                             ),
                           ),
-                        ),
+                          controller.characters.value.results == null
+                              ? const Center(
+                                  child: Padding(
+                                    padding: EdgeInsets.only(
+                                        left: 24.0, right: 24.0),
+                                    child: Text(
+                                      'Escolha o filtro desejado e digite \num nome para a busca de personagens!',
+                                      style: body_black_14_700,
+                                      textAlign: TextAlign.center,
+                                    ),
+                                  ),
+                                )
+                              : Padding(
+                                  padding: const EdgeInsets.only(
+                                      right: 2.0, top: 148.0, bottom: 0.0),
+                                  child: RawScrollbar(
+                                    thickness: 2.0,
+                                    thumbVisibility: true,
+                                    thumbColor: brown_color,
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(
+                                          left: 8.0, right: 8.0),
+                                      child: ListView.builder(
+                                        shrinkWrap: true,
+                                        controller: controller.scrollController,
+                                        itemCount: controller
+                                            .characters.value.results!.length,
+                                        itemBuilder: ((context, i) {
+                                          return Container(
+                                            width: SizeConfig.wp(100),
+                                            padding: const EdgeInsets.all(8.0),
+                                            margin: EdgeInsets.only(
+                                              bottom: i ==
+                                                      controller
+                                                              .characters
+                                                              .value
+                                                              .results!
+                                                              .length -
+                                                          1
+                                                  ? 76.0
+                                                  : 8.0,
+                                            ),
+                                            decoration:
+                                                translucid_blue_box_decoration,
+                                            child: Row(
+                                              children: [
+                                                FadeInImage.assetNetwork(
+                                                    height: 136.0,
+                                                    width: 136.0,
+                                                    placeholder: image1,
+                                                    image: controller
+                                                        .characters
+                                                        .value
+                                                        .results![i]
+                                                        .image!),
+                                                Expanded(
+                                                  child: Center(
+                                                    child: Text(
+                                                      controller
+                                                              .characters
+                                                              .value
+                                                              .results![i]
+                                                              .name ??
+                                                          '',
+                                                      style: title_white_20,
+                                                      textAlign:
+                                                          TextAlign.center,
+                                                    ),
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          );
+                                        }),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                          Positioned(
+                            bottom: 0.0,
+                            left: 0.0,
+                            right: 0.0,
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: controller.isLoadingMore.value == true
+                                  ? SizedBox(
+                                      height: 60.0,
+                                      width: SizeConfig.wp(100),
+                                      child: const Center(
+                                          child: CircularProgressIndicator()),
+                                    )
+                                  : CustomButtonWidget(
+                                      text: 'BUSCAR',
+                                      callback: () async {
+                                        await SystemChannels.textInput
+                                            .invokeMethod('TextInput.hide');
+                                        final FormState form =
+                                            _formKey.currentState!;
+                                        if (form.validate()) {
+                                          form.save();
+                                          // controller.characters.value.results =
+                                          //     [];
+                                          controller.setQueryParameters();
+                                        }
+                                      },
+                                    ),
+                            ),
+                          )
+                        ],
                       ),
-                    ],
+                    ),
                   ),
                 ),
               )

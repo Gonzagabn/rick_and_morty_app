@@ -40,7 +40,7 @@ abstract class AppPages {
     ),
     GetPage(
       name: Routes.SEARCH,
-      page: () => const SearchPage(),
+      page: () => SearchPage(),
       binding: SearchBinding(),
       transition: Transition.cupertino,
     ),

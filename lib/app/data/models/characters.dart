@@ -4,13 +4,13 @@
 
 import 'dart:convert';
 
-Characters charactersFromJson(String str) =>
-    Characters.fromJson(json.decode(str));
+CharactersModel charactersFromJson(String str) =>
+    CharactersModel.fromJson(json.decode(str));
 
-String charactersToJson(Characters data) => json.encode(data.toJson());
+String charactersToJson(CharactersModel data) => json.encode(data.toJson());
 
-class Characters {
-  Characters({
+class CharactersModel {
+  CharactersModel({
     this.info,
     this.results,
   });
@@ -18,7 +18,8 @@ class Characters {
   Info? info;
   List<Result>? results;
 
-  factory Characters.fromJson(Map<String, dynamic> json) => Characters(
+  factory CharactersModel.fromJson(Map<String, dynamic> json) =>
+      CharactersModel(
         info: Info.fromJson(json["info"]),
         results:
             List<Result>.from(json["results"].map((x) => Result.fromJson(x))),

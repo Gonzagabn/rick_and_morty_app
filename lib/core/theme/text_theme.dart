@@ -68,6 +68,13 @@ const TextStyle title_black_20_700 = TextStyle(
   fontWeight: FontWeight.w700,
 );
 
+//title_blue_20_700
+const TextStyle title_blue_20_700 = TextStyle(
+  color: bg_blue_color,
+  fontSize: 20.0,
+  fontWeight: FontWeight.w700,
+);
+
 //Body -----------------------------------------------------------------------
 
 //body_white_18_700
@@ -80,6 +87,20 @@ const TextStyle body_white_18 = TextStyle(
 //body_white_18_700
 const TextStyle body_white_18_700 = TextStyle(
   color: white_color,
+  fontSize: 18.0,
+  fontWeight: FontWeight.w700,
+);
+
+//body_brown_18_700
+const TextStyle body_brown_18_700 = TextStyle(
+  color: brown_color,
+  fontSize: 18.0,
+  fontWeight: FontWeight.w700,
+);
+
+//body_green_18_700
+const TextStyle body_green_18_700 = TextStyle(
+  color: green_logo_color,
   fontSize: 18.0,
   fontWeight: FontWeight.w700,
 );
