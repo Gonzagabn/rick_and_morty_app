@@ -36,15 +36,23 @@ class FavoritesPage extends GetView<FavoritesController> {
                         ? const Center(child: CircularProgressIndicator())
                         : Stack(
                             children: [
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Center(
-                                    child: Image.asset(
-                                  logo,
-                                  color: white_color.withOpacity(0.64),
-                                  colorBlendMode: BlendMode.modulate,
-                                )),
-                              ),
+                              controller
+                                      .storage.characters.value.results!.isEmpty
+                                  ? Center(
+                                      child: Image.asset(
+                                      image2,
+                                      color: white_color.withOpacity(0.16),
+                                      colorBlendMode: BlendMode.modulate,
+                                    ))
+                                  : Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Center(
+                                          child: Image.asset(
+                                        logo,
+                                        color: white_color.withOpacity(0.64),
+                                        colorBlendMode: BlendMode.modulate,
+                                      )),
+                                    ),
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: Row(
@@ -67,79 +75,102 @@ class FavoritesPage extends GetView<FavoritesController> {
                                   ],
                                 ),
                               ),
-                              Padding(
-                                padding: const EdgeInsets.only(
-                                    right: 2.0, top: 40.0, bottom: 0.0),
-                                child: RawScrollbar(
-                                  thickness: 2.0,
-                                  thumbVisibility: true,
-                                  thumbColor: brown_color,
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(
-                                        left: 8.0, right: 8.0),
-                                    child: ListView.builder(
-                                      shrinkWrap: true,
-                                      itemCount: controller.storage.characters
-                                          .value.results!.length,
-                                      itemBuilder: ((context, i) {
-                                        return GestureDetector(
-                                          onTap: () => Get.toNamed(
-                                              Routes.DETAILS,
-                                              arguments: controller
-                                                  .storage
-                                                  .characters
-                                                  .value
-                                                  .results![i]),
-                                          child: Container(
-                                            width: SizeConfig.wp(100),
-                                            padding: const EdgeInsets.all(8.0),
-                                            margin: EdgeInsets.only(
-                                              bottom: i ==
-                                                      controller
-                                                              .storage
-                                                              .characters
-                                                              .value
-                                                              .results!
-                                                              .length -
-                                                          1
-                                                  ? 76.0
-                                                  : 8.0,
-                                            ),
-                                            decoration:
-                                                translucid_blue_box_decoration,
-                                            child: Row(
-                                              children: [
-                                                Image.network(
-                                                  height: 136.0,
-                                                  width: 136.0,
-                                                  controller.storage.characters
-                                                      .value.results![i].image!,
-                                                ),
-                                                Expanded(
-                                                  child: Center(
-                                                    child: Text(
-                                                      controller
-                                                              .storage
-                                                              .characters
-                                                              .value
-                                                              .results![i]
-                                                              .name ??
-                                                          '',
-                                                      style: title_white_20,
-                                                      textAlign:
-                                                          TextAlign.center,
-                                                    ),
+                              controller
+                                      .storage.characters.value.results!.isEmpty
+                                  ? const Center(
+                                      child: Padding(
+                                        padding: EdgeInsets.only(
+                                            left: 24.0, right: 24.0),
+                                        child: Text(
+                                          'Quando você clica na foto de um personagem\n na página de detalhes ele vem parar aqui!',
+                                          style: body_black_14_700,
+                                          textAlign: TextAlign.center,
+                                        ),
+                                      ),
+                                    )
+                                  : Padding(
+                                      padding: const EdgeInsets.only(
+                                          right: 2.0, top: 40.0, bottom: 0.0),
+                                      child: RawScrollbar(
+                                        thickness: 2.0,
+                                        thumbVisibility: true,
+                                        thumbColor: brown_color,
+                                        child: Padding(
+                                          padding: const EdgeInsets.only(
+                                              left: 8.0, right: 8.0),
+                                          child: ListView.builder(
+                                            shrinkWrap: true,
+                                            itemCount: controller
+                                                .storage
+                                                .characters
+                                                .value
+                                                .results!
+                                                .length,
+                                            itemBuilder: ((context, i) {
+                                              return GestureDetector(
+                                                onTap: () => Get.toNamed(
+                                                    Routes.DETAILS,
+                                                    arguments: controller
+                                                        .storage
+                                                        .characters
+                                                        .value
+                                                        .results![i]),
+                                                child: Container(
+                                                  width: SizeConfig.wp(100),
+                                                  padding:
+                                                      const EdgeInsets.all(8.0),
+                                                  margin: EdgeInsets.only(
+                                                    bottom: i ==
+                                                            controller
+                                                                    .storage
+                                                                    .characters
+                                                                    .value
+                                                                    .results!
+                                                                    .length -
+                                                                1
+                                                        ? 76.0
+                                                        : 8.0,
+                                                  ),
+                                                  decoration:
+                                                      translucid_blue_box_decoration,
+                                                  child: Row(
+                                                    children: [
+                                                      Image.network(
+                                                        height: 136.0,
+                                                        width: 136.0,
+                                                        controller
+                                                            .storage
+                                                            .characters
+                                                            .value
+                                                            .results![i]
+                                                            .image!,
+                                                      ),
+                                                      Expanded(
+                                                        child: Center(
+                                                          child: Text(
+                                                            controller
+                                                                    .storage
+                                                                    .characters
+                                                                    .value
+                                                                    .results![i]
+                                                                    .name ??
+                                                                '',
+                                                            style:
+                                                                title_white_20,
+                                                            textAlign: TextAlign
+                                                                .center,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ],
                                                   ),
                                                 ),
-                                              ],
-                                            ),
+                                              );
+                                            }),
                                           ),
-                                        );
-                                      }),
+                                        ),
+                                      ),
                                     ),
-                                  ),
-                                ),
-                              ),
                               Positioned(
                                 bottom: 0.0,
                                 left: 0.0,
