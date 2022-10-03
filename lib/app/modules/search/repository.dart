@@ -5,5 +5,5 @@ class SearchRepository {
 
   SearchRepository(this.api);
   getFilteredCharacters({query, page}) =>
-      api.getFilteredCharacters(query: query, page: page);
+      api.getCharacters(query: query, page: page);
 }

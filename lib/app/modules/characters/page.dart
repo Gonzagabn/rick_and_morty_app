@@ -159,8 +159,13 @@ class CharactersPage extends GetView<CharactersController> {
                                         )
                                       : CustomButtonWidget(
                                           text: 'CARREGAR MAIS',
-                                          callback: () =>
-                                              controller.getMoreCharacters(),
+                                          callback: controller.characters.value
+                                                      .results!.length ==
+                                                  controller.characters.value
+                                                      .info!.count
+                                              ? null
+                                              : () => controller
+                                                  .getMoreCharacters(),
                                         ),
                                 ),
                               )

@@ -37,8 +37,7 @@ class CustomButtonWidget extends Container {
         textColor: textColor,
         color: bgColor,
         splashColor: Colors.white,
-        disabledTextColor: Colors.grey,
-        disabledColor: Colors.white,
+        disabledColor: black_color.withOpacity(0.64),
         disabledElevation: 0.0,
         shape: RoundedRectangleBorder(
             side: BorderSide(

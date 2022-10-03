@@ -4,5 +4,5 @@ class CharactersRepository {
   final MyApi api;
 
   CharactersRepository(this.api);
-  getAllCharacters({page}) => api.getAllCharacters(page: page);
+  getAllCharacters({page}) => api.getCharacters(page: page);
 }

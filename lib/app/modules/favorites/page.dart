@@ -148,9 +148,12 @@ class FavoritesPage extends GetView<FavoritesController> {
                                   padding: const EdgeInsets.all(8.0),
                                   child: CustomButtonWidget(
                                     text: 'LIMPAR FAVORITOS',
-                                    callback: () async {
-                                      await controller.clearFavorites();
-                                    },
+                                    callback: controller.storage.characters
+                                            .value.results!.isEmpty
+                                        ? null
+                                        : () async {
+                                            await controller.clearFavorites();
+                                          },
                                   ),
                                 ),
                               )

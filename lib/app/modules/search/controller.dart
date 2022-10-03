@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rick_and_morty_app/app/data/models/characters.dart';
 import 'package:rick_and_morty_app/app/modules/search/repository.dart';
-import 'package:rick_and_morty_app/core/utils/get_errors.dart';
+import 'package:rick_and_morty_app/core/utils/verify_error.dart';
 
 class SearchController extends GetxController {
   final SearchRepository repository;
@@ -66,7 +66,7 @@ class SearchController extends GetxController {
     await getFilteredCharacters();
   }
 
-  setNameFilter() => query.value = 'name=${characterName.value}';
+  setNameFilter() => query.value = 'name=${characterName.value}&';
 
   setSpeciesFilter() {
     // if (humanFilterSelected.value == true &&
@@ -74,9 +74,9 @@ class SearchController extends GetxController {
     //   query.value = '${query.value}&species=Alien&species=Human';
     // } else
     if (humanFilterSelected.value == true) {
-      query.value = '${query.value}&species=Human';
+      query.value = '${query.value}species=Human&';
     } else if (alienFilterSelected.value == true) {
-      query.value = '${query.value}&species=Alien';
+      query.value = '${query.value}species=Alien&';
     }
   }
 
