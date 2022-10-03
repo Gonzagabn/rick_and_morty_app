@@ -78,14 +78,14 @@ class DetailsController extends GetxController {
   addCharacterToFavoritesList() {
     storage.characters.value.results!.addIf(
         storage.characters.value.results!
-                .firstWhereOrNull((element) => element == arguments) ==
+                .firstWhereOrNull((element) => element.id == arguments.id) ==
             null,
         arguments);
   }
 
   removeCharacterFromFavoritesList() {
     storage.characters.update((val) =>
-        val!.results!.removeWhere(((element) => element == arguments)));
+        val!.results!.removeWhere(((element) => element.id == arguments.id)));
   }
 
   saveFavorites() => storage.saveStorageFavoriteCharacters();
