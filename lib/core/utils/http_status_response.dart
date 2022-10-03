@@ -10,7 +10,7 @@ abstract class HttpStatusResponse {
     } else if (data == 500) {
       return customScaffoldMessenger('Erro inesperado!');
     } else if (data == 404) {
-      return customScaffoldMessenger('Nada foi encontrado!');
+      return customScaffoldMessenger('Nenhum personagem foi encontrado!');
     } else {
       return customScaffoldMessenger('Erro ${data.statusCode}: ${data.body}');
     }
@@ -20,7 +20,7 @@ abstract class HttpStatusResponse {
 customScaffoldMessenger(message) {
   return ScaffoldMessenger.of(Get.context!).showSnackBar(
     SnackBar(
-      duration: const Duration(seconds: 1),
+      duration: const Duration(seconds: 3),
       backgroundColor: error_color,
       content: Text(message, style: body_white_14_700),
       behavior: SnackBarBehavior.floating,
