@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rick_and_morty_app/app/modules/characters/binding.dart';
 import 'package:rick_and_morty_app/app/modules/characters/page.dart';
@@ -16,7 +17,7 @@ abstract class AppPages {
   static final pages = [
     GetPage(
       name: Routes.CHARACTERS,
-      page: () => const CharactersPage(),
+      page: () => const CharactersPage(key: Key('characters_page')),
       binding: CharactersBinding(),
       transition: Transition.cupertino,
     ),
@@ -28,7 +29,7 @@ abstract class AppPages {
     ),
     GetPage(
       name: Routes.FAVORITES,
-      page: () => const FavoritesPage(),
+      page: () => const FavoritesPage(key: Key('favorites_page')),
       binding: FavoritesBinding(),
       transition: Transition.cupertino,
     ),
