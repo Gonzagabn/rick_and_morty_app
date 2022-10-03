@@ -4,7 +4,6 @@ import 'package:rick_and_morty_app/app/modules/details/controller.dart';
 import 'package:rick_and_morty_app/app/modules/details/widgets/character_attributes.dart';
 import 'package:rick_and_morty_app/app/widgets/top_section.dart';
 import 'package:rick_and_morty_app/core/theme/box_decorations.dart';
-import 'package:rick_and_morty_app/core/theme/text_theme.dart';
 import 'package:rick_and_morty_app/core/values/images.dart';
 import 'package:rick_and_morty_app/core/utils/size.dart';
 import 'package:rick_and_morty_app/core/values/colors.dart';

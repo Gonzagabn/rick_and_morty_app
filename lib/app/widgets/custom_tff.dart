@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_typing_uninitialized_variables
+
 import 'package:flutter/material.dart';
 import 'package:rick_and_morty_app/core/theme/text_theme.dart';
 import 'package:rick_and_morty_app/core/values/colors.dart';
@@ -19,6 +21,7 @@ class CustomTffWidget extends Container {
       disabledBorderColor,
       fErrordBorderColor,
       primaryColor;
+
   CustomTffWidget({
     this.onChanged,
     this.onSaved,

@@ -40,7 +40,7 @@ class CharactersController extends GetxController {
         isLoadingMore.value = false;
       } else {
         resultsPageIndex.value++;
-        characters.value.results!.addAll(data.results!);
+        characters.update((val) => val!.results!.addAll(data.results!));
       }
     });
     isLoadingMore.value = false;
