@@ -11,6 +11,7 @@ import 'package:rick_and_morty_app/core/theme/text_theme.dart';
 import 'package:rick_and_morty_app/core/utils/images.dart';
 import 'package:rick_and_morty_app/core/utils/size.dart';
 import 'package:rick_and_morty_app/core/values/colors.dart';
+import 'package:rick_and_morty_app/routes/pages.dart';
 
 class SearchPage extends GetView<SearchController> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
@@ -26,10 +27,7 @@ class SearchPage extends GetView<SearchController> {
         child: SafeArea(
           child: Stack(
             children: [
-              TopSectionWidget(
-                controller: controller,
-                title: 'Busca',
-              ),
+              const TopSectionWidget(title: 'Busca'),
               Positioned(
                 left: 0.0,
                 right: 0.0,
@@ -51,14 +49,20 @@ class SearchPage extends GetView<SearchController> {
                                 ))
                               : Padding(
                                   padding: const EdgeInsets.all(8.0),
-                                  child: Center(child: Image.asset(logo)),
+                                  child: Center(
+                                      child: Image.asset(
+                                    logo,
+                                    color: white_color.withOpacity(0.64),
+                                    colorBlendMode: BlendMode.modulate,
+                                  )),
                                 ),
                           Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Column(
                               children: [
                                 Padding(
-                                  padding: const EdgeInsets.only(top: 0.0),
+                                  padding: const EdgeInsets.only(
+                                      top: 8.0, bottom: 8.0),
                                   child: Row(
                                     children: [
                                       Expanded(
@@ -169,7 +173,7 @@ class SearchPage extends GetView<SearchController> {
                                 )
                               : Padding(
                                   padding: const EdgeInsets.only(
-                                      right: 2.0, top: 124.0, bottom: 0.0),
+                                      right: 2.0, top: 140.0, bottom: 0.0),
                                   child: RawScrollbar(
                                     thickness: 2.0,
                                     controller: controller.scrollController,
@@ -185,49 +189,56 @@ class SearchPage extends GetView<SearchController> {
                                         itemCount: controller
                                             .characters.value.results!.length,
                                         itemBuilder: ((context, i) {
-                                          return Container(
-                                            width: SizeConfig.wp(100),
-                                            padding: const EdgeInsets.all(8.0),
-                                            margin: EdgeInsets.only(
-                                              bottom: i ==
-                                                      controller
-                                                              .characters
-                                                              .value
-                                                              .results!
-                                                              .length -
-                                                          1
-                                                  ? 76.0
-                                                  : 8.0,
-                                            ),
-                                            decoration:
-                                                translucid_blue_box_decoration,
-                                            child: Row(
-                                              children: [
-                                                FadeInImage.assetNetwork(
-                                                    height: 136.0,
-                                                    width: 136.0,
-                                                    placeholder: image1,
-                                                    image: controller
-                                                        .characters
-                                                        .value
-                                                        .results![i]
-                                                        .image!),
-                                                Expanded(
-                                                  child: Center(
-                                                    child: Text(
-                                                      controller
-                                                              .characters
-                                                              .value
-                                                              .results![i]
-                                                              .name ??
-                                                          '',
-                                                      style: title_white_20,
-                                                      textAlign:
-                                                          TextAlign.center,
+                                          return GestureDetector(
+                                            onTap: () => Get.toNamed(
+                                                Routes.DETAILS,
+                                                arguments: controller.characters
+                                                    .value.results![i]),
+                                            child: Container(
+                                              width: SizeConfig.wp(100),
+                                              padding:
+                                                  const EdgeInsets.all(8.0),
+                                              margin: EdgeInsets.only(
+                                                bottom: i ==
+                                                        controller
+                                                                .characters
+                                                                .value
+                                                                .results!
+                                                                .length -
+                                                            1
+                                                    ? 76.0
+                                                    : 8.0,
+                                              ),
+                                              decoration:
+                                                  translucid_blue_box_decoration,
+                                              child: Row(
+                                                children: [
+                                                  FadeInImage.assetNetwork(
+                                                      height: 136.0,
+                                                      width: 136.0,
+                                                      placeholder: image1,
+                                                      image: controller
+                                                          .characters
+                                                          .value
+                                                          .results![i]
+                                                          .image!),
+                                                  Expanded(
+                                                    child: Center(
+                                                      child: Text(
+                                                        controller
+                                                                .characters
+                                                                .value
+                                                                .results![i]
+                                                                .name ??
+                                                            '',
+                                                        style: title_white_20,
+                                                        textAlign:
+                                                            TextAlign.center,
+                                                      ),
                                                     ),
                                                   ),
-                                                ),
-                                              ],
+                                                ],
+                                              ),
                                             ),
                                           );
                                         }),

@@ -20,14 +20,17 @@ class CharactersModel {
 
   factory CharactersModel.fromJson(Map<String, dynamic> json) =>
       CharactersModel(
-        info: Info.fromJson(json["info"]),
-        results:
-            List<Result>.from(json["results"].map((x) => Result.fromJson(x))),
+        info: json["info"] == null ? Info() : Info.fromJson(json["info"]),
+        results: json["results"] == null
+            ? []
+            : List<Result>.from(json["results"].map((x) => Result.fromJson(x))),
       );
 
   Map<String, dynamic> toJson() => {
-        "info": info!.toJson(),
-        "results": List<dynamic>.from(results!.map((x) => x.toJson())),
+        "info": info == null ? Info() : info!.toJson(),
+        "results": results == null
+            ? []
+            : List<dynamic>.from(results!.map((x) => x.toJson())),
       };
 }
 

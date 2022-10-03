@@ -31,8 +31,6 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  flutter_localizations:
-    sdk: flutter
 
   flutter_switch: ^0.3.2
   get:

@@ -8,6 +8,7 @@ import 'package:rick_and_morty_app/core/theme/text_theme.dart';
 import 'package:rick_and_morty_app/core/utils/images.dart';
 import 'package:rick_and_morty_app/core/utils/size.dart';
 import 'package:rick_and_morty_app/core/values/colors.dart';
+import 'package:rick_and_morty_app/routes/pages.dart';
 
 class CharactersPage extends GetView<CharactersController> {
   const CharactersPage({Key? key}) : super(key: key);
@@ -22,10 +23,7 @@ class CharactersPage extends GetView<CharactersController> {
         child: SafeArea(
           child: Stack(
             children: [
-              TopSectionWidget(
-                controller: controller,
-                title: 'Personagens',
-              ),
+              const TopSectionWidget(title: 'Personagens'),
               Positioned(
                 left: 0.0,
                 right: 0.0,
@@ -40,7 +38,12 @@ class CharactersPage extends GetView<CharactersController> {
                             children: [
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
-                                child: Center(child: Image.asset(logo)),
+                                child: Center(
+                                    child: Image.asset(
+                                  logo,
+                                  color: white_color.withOpacity(0.64),
+                                  colorBlendMode: BlendMode.modulate,
+                                )),
                               ),
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
@@ -84,42 +87,55 @@ class CharactersPage extends GetView<CharactersController> {
                                       itemCount: controller
                                           .characters.value.results!.length,
                                       itemBuilder: ((context, i) {
-                                        return Container(
-                                          width: SizeConfig.wp(100),
-                                          padding: const EdgeInsets.all(8.0),
-                                          margin: EdgeInsets.only(
-                                            bottom: i ==
-                                                    controller.characters.value
-                                                            .results!.length -
-                                                        1
-                                                ? 76.0
-                                                : 8.0,
-                                          ),
-                                          decoration:
-                                              translucid_blue_box_decoration,
-                                          child: Row(
-                                            children: [
-                                              FadeInImage.assetNetwork(
-                                                  height: 136.0,
-                                                  width: 136.0,
-                                                  placeholder: image1,
-                                                  image: controller
-                                                      .characters
-                                                      .value
-                                                      .results![i]
-                                                      .image!),
-                                              Expanded(
-                                                child: Center(
-                                                  child: Text(
-                                                    controller.characters.value
-                                                            .results![i].name ??
-                                                        '',
-                                                    style: title_white_20,
-                                                    textAlign: TextAlign.center,
+                                        return GestureDetector(
+                                          onTap: () => Get.toNamed(
+                                              Routes.DETAILS,
+                                              arguments: controller.characters
+                                                  .value.results![i]),
+                                          child: Container(
+                                            width: SizeConfig.wp(100),
+                                            padding: const EdgeInsets.all(8.0),
+                                            margin: EdgeInsets.only(
+                                              bottom: i ==
+                                                      controller
+                                                              .characters
+                                                              .value
+                                                              .results!
+                                                              .length -
+                                                          1
+                                                  ? 76.0
+                                                  : 8.0,
+                                            ),
+                                            decoration:
+                                                translucid_blue_box_decoration,
+                                            child: Row(
+                                              children: [
+                                                FadeInImage.assetNetwork(
+                                                    height: 136.0,
+                                                    width: 136.0,
+                                                    placeholder: image1,
+                                                    image: controller
+                                                        .characters
+                                                        .value
+                                                        .results![i]
+                                                        .image!),
+                                                Expanded(
+                                                  child: Center(
+                                                    child: Text(
+                                                      controller
+                                                              .characters
+                                                              .value
+                                                              .results![i]
+                                                              .name ??
+                                                          '',
+                                                      style: title_white_20,
+                                                      textAlign:
+                                                          TextAlign.center,
+                                                    ),
                                                   ),
                                                 ),
-                                              ),
-                                            ],
+                                              ],
+                                            ),
                                           ),
                                         );
                                       }),

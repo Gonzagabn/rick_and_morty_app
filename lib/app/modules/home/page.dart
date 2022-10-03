@@ -22,11 +22,7 @@ class HomePage extends GetView<HomeController> {
         child: SafeArea(
           child: Stack(
             children: [
-              TopSectionWidget(
-                controller: controller,
-                title: 'Home',
-                isHome: true,
-              ),
+              const TopSectionWidget(title: 'Home', isHome: true),
               Positioned(
                 left: 0.0,
                 right: 0.0,
@@ -38,7 +34,12 @@ class HomePage extends GetView<HomeController> {
                     children: [
                       Padding(
                         padding: const EdgeInsets.all(8.0),
-                        child: Center(child: Image.asset(logo)),
+                        child: Center(
+                            child: Image.asset(
+                          logo,
+                          color: white_color.withOpacity(0.64),
+                          colorBlendMode: BlendMode.modulate,
+                        )),
                       ),
                       Padding(
                         padding: const EdgeInsets.only(right: 2.0),

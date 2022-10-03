@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:rick_and_morty_app/app/data/services/storage/service.dart';
@@ -25,12 +24,6 @@ Future main() async {
       enableLog: true,
       debugShowCheckedModeBanner: false,
       title: "Rick and Morty",
-      localizationsDelegates: const [
-        GlobalMaterialLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-      ],
-      supportedLocales: const [Locale('pt', 'BR'), Locale('en', 'EUA')],
       theme: ThemeData(
           primaryColor: bg_dark_blue_color,
           colorScheme: ColorScheme.fromSeed(seedColor: bg_dark_blue_color)),
