@@ -9,8 +9,8 @@ import 'package:rick_and_morty_app/core/values/colors.dart';
 class DetailsController extends GetxController {
   final DetailsRepository repository;
   DetailsController(this.repository);
-  late Result arguments;
   late StorageService storage;
+  late Result arguments;
   final isFavorite = false.obs;
 
   @override
@@ -26,13 +26,11 @@ class DetailsController extends GetxController {
   }
 
   checkFavoriteStatus() {
-    print(arguments.toJson());
-    print('checkFavoriteStatus');
-    if (storage.characters.value.results!.contains(arguments)) {
-      print('true');
+    if (storage.characters.value.results!
+            .firstWhereOrNull((element) => element.id == arguments.id) !=
+        null) {
       isFavorite.value = true;
     } else {
-      print('false');
       isFavorite.value = false;
     }
   }
