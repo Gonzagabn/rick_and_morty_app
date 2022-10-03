@@ -50,7 +50,7 @@ class SearchController extends GetxController {
     setQueryParameters();
   }
 
-  clearResultsList() => characters.value.results!.clear();
+  clearResultsList() => characters.update((val) => val!.results!.clear());
 
   resetResultsPageIndex() => resultsPageIndex.value = 1;
 
@@ -87,6 +87,7 @@ class SearchController extends GetxController {
         .getFilteredCharacters(query: query.value, page: resultsPageIndex.value)
         .then((data) {
       if (VerifyError.verify(data)) {
+        clearResultsList();
         isLoadingMore.value = false;
       } else {
         if (data.info!.next != null) {
@@ -123,6 +124,7 @@ class SearchController extends GetxController {
               query: query.value, page: resultsPageIndex.value)
           .then((data) {
         if (VerifyError.verify(data)) {
+          clearResultsList();
           lockForMoreCharacters.value = false;
         } else {
           if (data.info!.next != null) {
