@@ -12,11 +12,6 @@ class MyApi extends GetConnect {
   getFilteredCharacters({query, page}) async {
     final resp =
         await get('$baseUrl/character/?$query&page=$page', decoder: (_) => _);
-    // print(query);
-    // print(page);
-    // print('?$query&page=$page');
-    // print(resp.statusCode);
-    // print(resp.body);
     return CharactersModel.fromJson(resp.body);
   }
 }

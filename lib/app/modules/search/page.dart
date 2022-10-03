@@ -42,11 +42,11 @@ class SearchPage extends GetView<SearchController> {
                       color: white_color,
                       child: Stack(
                         children: [
-                          controller.characters.value.results == null
+                          controller.characters.value.results!.isEmpty
                               ? Center(
                                   child: Image.asset(
                                   image3,
-                                  color: white_color.withOpacity(0.08),
+                                  color: white_color.withOpacity(0.16),
                                   colorBlendMode: BlendMode.modulate,
                                 ))
                               : Padding(
@@ -57,6 +57,87 @@ class SearchPage extends GetView<SearchController> {
                             padding: const EdgeInsets.all(8.0),
                             child: Column(
                               children: [
+                                Padding(
+                                  padding: const EdgeInsets.only(top: 0.0),
+                                  child: Row(
+                                    children: [
+                                      Expanded(
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            const Padding(
+                                              padding:
+                                                  EdgeInsets.only(right: 8.0),
+                                              child: Text(
+                                                'Humano',
+                                                style: body_black_16_700,
+                                              ),
+                                            ),
+                                            Obx(
+                                              () => FlutterSwitch(
+                                                width: 40.0,
+                                                height: 20.0,
+                                                valueFontSize: 14.0,
+                                                toggleSize: 15.0,
+                                                activeToggleColor:
+                                                    bg_medium_blue_color,
+                                                activeText: '',
+                                                inactiveText: '',
+                                                activeColor: green_logo_color,
+                                                inactiveColor: black_color,
+                                                value: controller
+                                                    .humanFilterSelected.value,
+                                                borderRadius: 105.0,
+                                                padding: 2.5,
+                                                showOnOff: true,
+                                                onToggle: (val) => controller
+                                                    .switchHumanFilter(),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                      Expanded(
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            const Padding(
+                                              padding:
+                                                  EdgeInsets.only(right: 8.0),
+                                              child: Text(
+                                                'Alien',
+                                                style: body_black_16_700,
+                                              ),
+                                            ),
+                                            Obx(
+                                              () => FlutterSwitch(
+                                                width: 40.0,
+                                                height: 20.0,
+                                                valueFontSize: 14.0,
+                                                toggleSize: 15.0,
+                                                activeToggleColor:
+                                                    bg_medium_blue_color,
+                                                activeText: '',
+                                                inactiveText: '',
+                                                activeColor: green_logo_color,
+                                                inactiveColor: black_color,
+                                                value: controller
+                                                    .alienFilterSelected.value,
+                                                borderRadius: 105.0,
+                                                padding: 2.5,
+                                                showOnOff: true,
+                                                onToggle: (val) => controller
+                                                    .switchAlienFilter(),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
                                 Padding(
                                   padding: const EdgeInsets.only(top: 8.0),
                                   child: CustomTffWidget(
@@ -71,91 +152,16 @@ class SearchPage extends GetView<SearchController> {
                                         controller.onValidateName(s),
                                   ),
                                 ),
-                                Padding(
-                                  padding: const EdgeInsets.only(top: 16.0),
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceAround,
-                                    children: [
-                                      Row(
-                                        children: [
-                                          const Padding(
-                                            padding:
-                                                EdgeInsets.only(right: 8.0),
-                                            child: Text(
-                                              'Humano',
-                                              style: body_black_16_700,
-                                            ),
-                                          ),
-                                          Obx(
-                                            () => FlutterSwitch(
-                                              width: 40.0,
-                                              height: 20.0,
-                                              valueFontSize: 14.0,
-                                              toggleSize: 15.0,
-                                              activeToggleColor:
-                                                  bg_medium_blue_color,
-                                              activeText: '',
-                                              inactiveText: '',
-                                              activeColor: green_logo_color,
-                                              inactiveColor: black_color,
-                                              value: controller
-                                                  .humanFilterSelected.value,
-                                              borderRadius: 105.0,
-                                              padding: 2.5,
-                                              showOnOff: true,
-                                              onToggle: (val) => controller
-                                                  .switchHumanFilter(),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                      Row(
-                                        children: [
-                                          const Padding(
-                                            padding:
-                                                EdgeInsets.only(right: 8.0),
-                                            child: Text(
-                                              'Alien',
-                                              style: body_black_16_700,
-                                            ),
-                                          ),
-                                          Obx(
-                                            () => FlutterSwitch(
-                                              width: 40.0,
-                                              height: 20.0,
-                                              valueFontSize: 14.0,
-                                              toggleSize: 15.0,
-                                              activeToggleColor:
-                                                  bg_medium_blue_color,
-                                              activeText: '',
-                                              inactiveText: '',
-                                              activeColor: green_logo_color,
-                                              inactiveColor: black_color,
-                                              value: controller
-                                                  .alienFilterSelected.value,
-                                              borderRadius: 105.0,
-                                              padding: 2.5,
-                                              showOnOff: true,
-                                              onToggle: (val) => controller
-                                                  .switchAlienFilter(),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ],
-                                  ),
-                                )
                               ],
                             ),
                           ),
-                          controller.characters.value.results == null
+                          controller.characters.value.results!.isEmpty
                               ? const Center(
                                   child: Padding(
                                     padding: EdgeInsets.only(
                                         left: 24.0, right: 24.0),
                                     child: Text(
-                                      'Escolha o filtro desejado e digite \num nome para a busca de personagens!',
+                                      'Busque um personagem pelo nome\n e escolha o filtro que desejar!',
                                       style: body_black_14_700,
                                       textAlign: TextAlign.center,
                                     ),
@@ -163,9 +169,10 @@ class SearchPage extends GetView<SearchController> {
                                 )
                               : Padding(
                                   padding: const EdgeInsets.only(
-                                      right: 2.0, top: 148.0, bottom: 0.0),
+                                      right: 2.0, top: 124.0, bottom: 0.0),
                                   child: RawScrollbar(
                                     thickness: 2.0,
+                                    controller: controller.scrollController,
                                     thumbVisibility: true,
                                     thumbColor: brown_color,
                                     child: Padding(
@@ -174,6 +181,7 @@ class SearchPage extends GetView<SearchController> {
                                       child: ListView.builder(
                                         shrinkWrap: true,
                                         controller: controller.scrollController,
+                                        scrollDirection: Axis.vertical,
                                         itemCount: controller
                                             .characters.value.results!.length,
                                         itemBuilder: ((context, i) {
@@ -249,9 +257,7 @@ class SearchPage extends GetView<SearchController> {
                                             _formKey.currentState!;
                                         if (form.validate()) {
                                           form.save();
-                                          // controller.characters.value.results =
-                                          //     [];
-                                          controller.setQueryParameters();
+                                          controller.setupSearch();
                                         }
                                       },
                                     ),
