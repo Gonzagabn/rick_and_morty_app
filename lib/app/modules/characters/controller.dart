@@ -23,7 +23,7 @@ class CharactersController extends GetxController {
   }
 
   getCharacter() async {
-    await repository.getAllCharacters().then((data) {
+    await repository.getCharacters().then((data) {
       if (VerifyError.verify(data)) {
         isReady.value = true;
       } else {
@@ -35,9 +35,7 @@ class CharactersController extends GetxController {
 
   getMoreCharacters() async {
     isLoadingMore.value = true;
-    await repository
-        .getAllCharacters(page: resultsPageIndex.value)
-        .then((data) {
+    await repository.getCharacters(page: resultsPageIndex.value).then((data) {
       if (VerifyError.verify(data)) {
         isLoadingMore.value = false;
       } else {
