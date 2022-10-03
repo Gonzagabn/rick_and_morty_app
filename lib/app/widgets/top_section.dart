@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rick_and_morty_app/core/theme/text_theme.dart';
-import 'package:rick_and_morty_app/core/utils/images.dart';
+import 'package:rick_and_morty_app/core/values/images.dart';
 import 'package:rick_and_morty_app/core/utils/size.dart';
 import 'package:rick_and_morty_app/core/values/colors.dart';
 

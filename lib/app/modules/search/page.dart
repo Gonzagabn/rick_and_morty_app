@@ -8,7 +8,7 @@ import 'package:rick_and_morty_app/app/widgets/custom_tff.dart';
 import 'package:rick_and_morty_app/app/widgets/top_section.dart';
 import 'package:rick_and_morty_app/core/theme/box_decorations.dart';
 import 'package:rick_and_morty_app/core/theme/text_theme.dart';
-import 'package:rick_and_morty_app/core/utils/images.dart';
+import 'package:rick_and_morty_app/core/values/images.dart';
 import 'package:rick_and_morty_app/core/utils/size.dart';
 import 'package:rick_and_morty_app/core/values/colors.dart';
 import 'package:rick_and_morty_app/routes/pages.dart';

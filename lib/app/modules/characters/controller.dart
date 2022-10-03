@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rick_and_morty_app/app/data/models/characters.dart';
 import 'package:rick_and_morty_app/app/modules/characters/repository.dart';
@@ -14,9 +13,13 @@ class CharactersController extends GetxController {
 
   @override
   void onInit() async {
+    await setupController();
+    super.onInit();
+  }
+
+  setupController() async {
     await getCharacter();
     isReady.value = true;
-    super.onInit();
   }
 
   getCharacter() async {

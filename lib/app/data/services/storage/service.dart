@@ -15,10 +15,10 @@ class StorageService extends GetxService {
   setupService() async {
     box = GetStorage();
     await box?.writeIfNull(favoriteCharacters, null);
-    await checkForFavoriteCharacters();
+    await checkStoredFavoriteCharacters();
   }
 
-  checkForFavoriteCharacters() async {
+  checkStoredFavoriteCharacters() async {
     var storedCharacters = await getStorageFavoriteCharacters();
     if (storedCharacters != null) {
       characters.value = CharactersModel.fromJson(storedCharacters);

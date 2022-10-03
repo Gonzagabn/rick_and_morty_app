@@ -38,11 +38,7 @@ class DetailsController extends GetxController {
   markAsFavorite() async {
     toggleFavorite();
     showSnackBarFavoriteStatus();
-    if (isFavorite.value == true) {
-      await addCharacterToFavoritesList();
-    } else {
-      await removeCharacterFromFavoritesList();
-    }
+    favoriteToggleAction();
     await saveFavorites();
   }
 
@@ -69,6 +65,14 @@ class DetailsController extends GetxController {
                 ScaffoldMessenger.of(Get.context!).clearSnackBars()),
       ),
     );
+  }
+
+  favoriteToggleAction() async {
+    if (isFavorite.value == true) {
+      await addCharacterToFavoritesList();
+    } else {
+      await removeCharacterFromFavoritesList();
+    }
   }
 
   addCharacterToFavoritesList() {
