@@ -11,7 +11,6 @@ class SearchController extends GetxController {
   final isLoadingMore = false.obs;
   final characters = CharactersModel(results: []).obs;
   // Query Parameters
-  final maxPages = 0.obs;
   final resultsPageIndex = 1.obs;
   final humanFilterSelected = false.obs;
   final alienFilterSelected = false.obs;
@@ -60,7 +59,6 @@ class SearchController extends GetxController {
   resetQueryParameters() => query.value = '';
 
   setQueryParameters() async {
-    await resetQueryParameters();
     await setNameFilter();
     await setSpeciesFilter();
     await getFilteredCharacters();
@@ -71,7 +69,10 @@ class SearchController extends GetxController {
   setSpeciesFilter() {
     // if (humanFilterSelected.value == true &&
     //     alienFilterSelected.value == true) {
-    //   query.value = '${query.value}&species=Alien&species=Human';
+    //   query.value = '${query.value}&species=Alien&species=Human&';
+    //   query.value = '${query.value}&species[]=Alien&species[]=Human&';
+    //   query.value = '${query.value}&species=Alien&Human&';
+    //   query.value = '${query.value}&species=Alien,Human&';
     // } else
     if (humanFilterSelected.value == true) {
       query.value = '${query.value}species=Human&';
@@ -88,7 +89,6 @@ class SearchController extends GetxController {
       if (VerifyError.verify(data)) {
         isLoadingMore.value = false;
       } else {
-        maxPages.value = data.info.pages;
         if (data.info!.next != null) {
           resultsPageIndex.value++;
         }
@@ -97,6 +97,11 @@ class SearchController extends GetxController {
     });
     isLoadingMore.value = false;
   }
+
+  onChangedName(s) => characterName.value = s;
+  onValidateName(s) =>
+      s.length >= 2 && s.length <= 100 ? null : 'Insira um nome válido.';
+  onSavedName(s) => characterName.value = s;
 
   scrollListener() {
     if (lockForMoreCharacters.value == false) {
@@ -112,7 +117,7 @@ class SearchController extends GetxController {
   }
 
   getMoreFilteredCharacters() async {
-    if ((maxPages.value * 20) - (characters.value.results!.length) >= 20) {
+    if (characters.value.results!.length < characters.value.info!.count!) {
       await repository
           .getFilteredCharacters(
               query: query.value, page: resultsPageIndex.value)
@@ -129,9 +134,4 @@ class SearchController extends GetxController {
       lockForMoreCharacters.value = false;
     }
   }
-
-  onChangedName(s) => characterName.value = s;
-  onValidateName(s) =>
-      s.length >= 2 && s.length <= 100 ? null : 'Insira um nome válido.';
-  onSavedName(s) => characterName.value = s;
 }
