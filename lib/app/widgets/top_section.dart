@@ -28,6 +28,7 @@ class TopSectionWidget extends StatelessWidget {
               isHome == true
                   ? const SizedBox(width: 16.0)
                   : IconButton(
+                      key: const Key('back_page'),
                       onPressed: () => Get.back(),
                       icon: const Icon(Icons.arrow_back, color: white_color),
                     ),

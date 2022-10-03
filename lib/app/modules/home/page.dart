@@ -54,6 +54,7 @@ class HomePage extends GetView<HomeController> {
                               child: Column(
                                 children: [
                                   HomeCardWidget(
+                                    key: const Key('characters_buton'),
                                     title: 'Lista de Personagens',
                                     description:
                                         'Lista completa dos personagens de Rick and Morty.',
@@ -70,6 +71,7 @@ class HomePage extends GetView<HomeController> {
                                     route: Routes.SEARCH,
                                   ),
                                   HomeCardWidget(
+                                    key: const Key('favorites_buton'),
                                     title: 'Favoritos',
                                     description:
                                         'Veja todos os personagens que você marcou como favorito.',

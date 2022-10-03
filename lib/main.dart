@@ -28,7 +28,7 @@ Future main() async {
           primaryColor: bg_dark_blue_color,
           colorScheme: ColorScheme.fromSeed(seedColor: bg_dark_blue_color)),
       initialBinding: HomeBinding(),
-      home: const HomePage(),
+      home: const HomePage(key: Key('home')),
       getPages: AppPages.pages,
     ),
   );
