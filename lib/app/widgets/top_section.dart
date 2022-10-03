@@ -7,11 +7,9 @@ import 'package:rick_and_morty_app/core/values/colors.dart';
 
 class TopSectionWidget extends StatelessWidget {
   final String title;
-  final bool isHome;
 
   const TopSectionWidget({
     required this.title,
-    this.isHome = false,
     Key? key,
   }) : super(key: key);
 
@@ -25,13 +23,11 @@ class TopSectionWidget extends StatelessWidget {
           color: bg_dark_blue_color,
           child: Row(
             children: [
-              isHome == true
-                  ? const SizedBox(width: 16.0)
-                  : IconButton(
-                      key: const Key('back_page'),
-                      onPressed: () => Get.back(),
-                      icon: const Icon(Icons.arrow_back, color: white_color),
-                    ),
+              IconButton(
+                key: const Key('back_page'),
+                onPressed: () => Get.back(),
+                icon: const Icon(Icons.arrow_back, color: white_color),
+              ),
               Text(title, style: title_white_20_700),
             ],
           ),

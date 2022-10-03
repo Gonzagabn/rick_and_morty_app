@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:rick_and_morty_app/app/modules/home/controller.dart';
 import 'package:rick_and_morty_app/app/modules/home/widgets/home_card.dart';
 import 'package:rick_and_morty_app/app/widgets/top_section.dart';
+import 'package:rick_and_morty_app/core/theme/text_theme.dart';
 import 'package:rick_and_morty_app/core/values/images.dart';
 import 'package:rick_and_morty_app/core/utils/size.dart';
 import 'package:rick_and_morty_app/core/values/colors.dart';
@@ -22,7 +23,26 @@ class HomePage extends GetView<HomeController> {
         child: SafeArea(
           child: Stack(
             children: [
-              const TopSectionWidget(title: 'Home', isHome: true),
+              Stack(
+                children: [
+                  Container(
+                    height: 48.0,
+                    width: SizeConfig.wp(100),
+                    color: bg_dark_blue_color,
+                    child: Row(
+                      children: const [
+                        SizedBox(width: 16.0),
+                        Text('Home', style: title_white_20_700),
+                      ],
+                    ),
+                  ),
+                  Positioned(
+                      top: 4.0,
+                      bottom: 4.0,
+                      right: 4.0,
+                      child: Center(child: Image.asset(logo)))
+                ],
+              ),
               Positioned(
                 left: 0.0,
                 right: 0.0,
