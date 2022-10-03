@@ -6,7 +6,8 @@ const baseUrl = 'https://rickandmortyapi.com/api/character';
 
 class MyApi extends GetConnect {
   getCharacters({query, page}) async {
-    final resp = await get('$baseUrl/?${query}page=$page', decoder: (_) => _);
+    final resp =
+        await get('$baseUrl/?${query ?? ''}page=$page', decoder: (_) => _);
     return HttpStatusResponse.verifyData(resp.statusCode,
         callback: CharactersModel.fromJson(resp.body));
   }
