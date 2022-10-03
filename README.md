@@ -1,16 +1,57 @@
 # rick_and_morty_app
 
-A new Flutter project.
+Projeto flutter desenvolvido com GetX e GetX Pattern.
 
-## Getting Started
+## Resumo do Projeto
 
-This project is a starting point for a Flutter application.
+O projeto tem objetivo de apresentar alguns dados dos personagens da série Rick and Morty, 
+a partir de uma REST API "https://rickandmortyapi.com/" (documentação aqui)
 
-A few resources to get you started if this is your first Flutter project:
+## Funções do app
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+Na tela Home é possivel ver três cards que direcionam o usuário para as funcionalidades de:
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+  - Lista de Personagens;
+  - Busca de Personagens;
+  - Detalhes do Personagem;
+  - Personagens favoritos.
+ 
+### Lista de personagens
+
+Essa funcionalidade exibe uma tela com todos os personagens, sendo carregados de 20 em 20 de
+acordo com a vontade do usuário, clicando no botão "carregar mais".
+
+### Busca de Personagens
+
+Aqui nessa funcionalidade, é permitido ao usuário buscar personagens pelo seu nome, ou parte
+dele, podendo ainda escolher filtrar o personagem por espécie, selecionando "Humano", "Anlien",
+ou ainda nenhuma das duas opções, o que retorna todos os resultados para a busca.
+
+Nesta página o carregamento e atualização de novos personagens acontece com um simples scroll. 
+
+### Detalhes do personagem
+
+Ao visualizar e clicar no card que contem o nome e a foto de um personagem, é possível visualizar 
+mais informações deste, como "nome", "gênero", "origem", "status", "specie" e "episódios". Além 
+disso ao clicar no card que contém a foto do personagem e um coração ao lado, este pode ser marcado, 
+ou desmarcado como favorito.
+
+### Personagens favoritos
+
+Nessa módulo o usuário consegue ver a lista de personagens favoritos, sendo possível acessar seus 
+detalhes, e limpar a lista como quiser.
+
+## Detalhes de implementação
+
+Este projeto possui:
+
+  - Armazenamento local com GetStorage;  
+  - Navegação com passagem de parâmetros;
+  - Requisições HTTP com GetConnect;
+  - QueryStrings para filtragem de dados;
+  - Tratamento de erros http;
+  - Teste de integração;
+  - Componentização de widgets;
+  - Componentização de estilos e cores;
+  - Ícone customizado;
+  - Splash screen customizada.
