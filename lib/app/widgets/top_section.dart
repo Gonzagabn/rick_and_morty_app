@@ -6,12 +6,10 @@ import 'package:rick_and_morty_app/core/utils/size.dart';
 import 'package:rick_and_morty_app/core/values/colors.dart';
 
 class TopSectionWidget extends StatelessWidget {
-  final GetxController controller;
   final String title;
   final bool isHome;
 
   const TopSectionWidget({
-    required this.controller,
     required this.title,
     this.isHome = false,
     Key? key,
