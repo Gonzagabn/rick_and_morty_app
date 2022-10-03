@@ -1,17 +1,13 @@
 import 'package:get/get.dart';
 import 'package:rick_and_morty_app/app/data/models/characters.dart';
+import 'package:rick_and_morty_app/core/utils/http_status_response.dart';
 
-const baseUrl = 'https://rickandmortyapi.com/api';
+const baseUrl = 'https://rickandmortyapi.com/api/character';
 
 class MyApi extends GetConnect {
-  getAllCharacters({page}) async {
-    final resp = await get('$baseUrl/character/?page=$page', decoder: (_) => _);
-    return CharactersModel.fromJson(resp.body);
-  }
-
-  getFilteredCharacters({query, page}) async {
-    final resp =
-        await get('$baseUrl/character/?$query&page=$page', decoder: (_) => _);
-    return CharactersModel.fromJson(resp.body);
+  getCharacters({query, page}) async {
+    final resp = await get('$baseUrl/?${query}page=$page', decoder: (_) => _);
+    return HttpStatusResponse.verifyData(resp.statusCode,
+        callback: CharactersModel.fromJson(resp.body));
   }
 }

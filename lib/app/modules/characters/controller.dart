@@ -1,7 +1,8 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rick_and_morty_app/app/data/models/characters.dart';
 import 'package:rick_and_morty_app/app/modules/characters/repository.dart';
-import 'package:rick_and_morty_app/core/utils/get_errors.dart';
+import 'package:rick_and_morty_app/core/utils/verify_error.dart';
 
 class CharactersController extends GetxController {
   final CharactersRepository repository;
