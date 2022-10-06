@@ -24,22 +24,22 @@ acordo com a vontade do usuário, clicando no botão "carregar mais".
 ### Busca de Personagens
 
 Aqui nessa funcionalidade, é permitido ao usuário buscar personagens pelo seu nome, ou parte
-dele, podendo ainda escolher filtrar o personagem por espécie, selecionando "Humano", "Anlien",
+dele, podendo ainda escolher filtrar o personagem por espécie, selecionando "Humano", "Alien",
 ou ainda nenhuma das duas opções, o que retorna todos os resultados para a busca.
 
-Nesta página o carregamento e atualização de novos personagens acontece com um simples scroll. 
+Nesta página o carregamento e atualização de novos personagens acontece com o simples scroll da lista. 
 
 ### Detalhes do personagem
 
 Ao visualizar e clicar no card que contem o nome e a foto de um personagem, é possível visualizar 
-mais informações deste, como "nome", "gênero", "origem", "status", "specie" e "episódios". Além 
-disso ao clicar no card que contém a foto do personagem e um coração ao lado, este pode ser marcado, 
+mais informações deste, como "nome", "gênero", "origem", "status", "specie" e "episódios" em que ele aparece.
+Além disso ao clicar no card que contém a foto do personagem e um coração ao lado, este pode ser marcado, 
 ou desmarcado como favorito.
 
 ### Personagens favoritos
 
-Nessa módulo o usuário consegue ver a lista de personagens favoritos, sendo possível acessar seus 
-detalhes, e limpar a lista como quiser.
+Nesse módulo o usuário consegue ver a lista de personagens favoritos, sendo possível acessar seus 
+detalhes, e limpar a lista quando quiser.
 
 ## Detalhes de implementação
 
